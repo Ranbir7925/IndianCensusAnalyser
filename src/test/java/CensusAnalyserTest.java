@@ -7,6 +7,7 @@ public class CensusAnalyserTest {
     private static final String WRONG_CSV_FILE_PATH = "./src/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_TYPE_PATH = "./src/test/resources/IndiaStateCensusData.txt" ;
     private static final String INVALID_DELIMITER_FILE_PATH = "./src/test/resources/InvalidDelimitersIndiaStateCensusData.csv" ;
+    private static final String INVALID_HEADER_FILE_PATH = "./src/test/resources/InvalidHeadersIndiaStateCensusData.csv";
 
     @Test
     public void givenIndianCensusCSVFile_ShouldReturnsCorrectRecords() {
@@ -31,7 +32,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianCensusDataCSVFile_whenWithWrongFileType_ShouldThrowException() {
+    public void givenIndianCensusDataCSVFile_WhenWithWrongFileType_ShouldThrowException() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         ExpectedException exceptionRule = ExpectedException.none();
         exceptionRule.expect(CensusAnalyserException.class);
@@ -43,12 +44,24 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndianCensusDataCSVFile_whenWithWrongDelimiters_shouldThrowException() {
+    public void givenIndianCensusDataCSVFile_WhenWithWrongDelimiters_ShouldThrowException() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         ExpectedException exceptionRule = ExpectedException.none();
         exceptionRule.expect(CensusAnalyserException.class);
         try{
             censusAnalyser.loadIndiaCensusData(INVALID_DELIMITER_FILE_PATH);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_OR_DELIMITER_OR_HEADER,e.type);
+        }
+    }
+
+    @Test
+    public void givenIndianCensusDataCSVFile_WhenWithWrongHeaders_ShouldThrowException() {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        ExpectedException exceptionRule = ExpectedException.none();
+        exceptionRule.expect(CensusAnalyserException.class);
+        try{
+            censusAnalyser.loadIndiaCensusData(INVALID_HEADER_FILE_PATH);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_OR_DELIMITER_OR_HEADER,e.type);
         }
