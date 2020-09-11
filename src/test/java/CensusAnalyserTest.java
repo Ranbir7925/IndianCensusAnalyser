@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
-import org.junit.Assert; import org.junit.Test;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class CensusAnalyserTest {
@@ -22,7 +23,8 @@ public class CensusAnalyserTest {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             int numberOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals(29, numberOfRecords);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+        }
     }
 
     //To test for a wrong file path
@@ -283,14 +285,15 @@ public class CensusAnalyserTest {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
             String usCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
-            USCensusCSV[] usCensusCSV =  new Gson().fromJson(usCensusData, USCensusCSV[].class);
+            USCensusCSV[] usCensusCSV = new Gson().fromJson(usCensusData, USCensusCSV[].class);
             Assert.assertEquals("District of Columbia", usCensusCSV[0].state);
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
             String indiaCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
-            IndiaCensusCSV[] indiaCensusCSV =  new Gson().fromJson(indiaCensusData, IndiaCensusCSV[].class);
+            IndiaCensusCSV[] indiaCensusCSV = new Gson().fromJson(indiaCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Bihar", indiaCensusCSV[0].state);
-        } catch (CensusAnalyserException e ) { }
+        } catch (CensusAnalyserException e) {
+        }
     }
 
 }
