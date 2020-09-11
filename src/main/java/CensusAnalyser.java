@@ -98,7 +98,7 @@ public class CensusAnalyser {
         return sortedPopulationCensus;
     }
 
-    public String getStatePopulationDensityWiseSortedCensusData() throws CensusAnalyserException {
+    public String getStatePopulationDensityWiseSortedData() throws CensusAnalyserException {
         if (censusMap == null || censusMap.size() == 0) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
@@ -131,7 +131,7 @@ public class CensusAnalyser {
         return sortedStateCode;
     }
 
-    public String getUSCensusPopulationWiseSortedCensusData() throws CensusAnalyserException {
+    public String getUSCensusPopulationWiseSortedData() throws CensusAnalyserException {
         if (censusMap  == null || censusMap .size() == 0) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
@@ -140,7 +140,7 @@ public class CensusAnalyser {
         censusDAOList = sortInDescendingOrder(usCensusComparator, censusDAOList);
         return new Gson().toJson(censusDAOList);
     }
-    public String getUSCensusPopulationDensityWiseSortedCensusData() throws CensusAnalyserException {
+    public String getUSCensusPopulationDensityWiseSortedData() throws CensusAnalyserException {
         if (censusMap  == null || censusMap .size() == 0) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
@@ -149,7 +149,7 @@ public class CensusAnalyser {
         censusDAOList = sortInDescendingOrder(usCensusComparator, censusDAOList);
         return new Gson().toJson(censusDAOList);
     }
-    public String getUSCensusAreaWiseSortedCensusData() throws CensusAnalyserException {
+    public String getUSCensusAreaWiseSortedData() throws CensusAnalyserException {
         if (censusMap  == null || censusMap .size() == 0) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
